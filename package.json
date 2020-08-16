@@ -1,0 +1,31 @@
+{
+  "name": "discord-bot-tests",
+  "version": "1.0.0",
+  "description": "Test bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasromerodb/discord-bot-tests.git"
+  },
+  "keywords": [
+    "test",
+    "dev",
+    "development"
+  ],
+  "author": "Luke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasromerodb/discord-bot-tests/issues"
+  },
+  "homepage": "https://github.com/lucasromerodb/discord-bot-tests#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "discord.js": "^12.3.1",
+    "puppeteer": "^5.2.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
