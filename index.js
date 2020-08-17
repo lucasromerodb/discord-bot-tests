@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
 const usaPresidentList = require("./usaPresidentListScrapper");
-const usaPresident = require("./usaPresidentScrapper");
 
 const client = new Discord.Client();
 
@@ -20,22 +19,21 @@ client.on("message", async (message) => {
   const args = commandBody.split(" "); // command and args
   const command = args.shift().toLowerCase(); // command itself
 
-  if (command === "ping") {
+  if (command === "presidents") {
     message.reply(`⏱ fetching...`);
 
-    let presidents = "\n";
+    const presidents = await usaPresidentList();
+    let names = "\n";
+
+    for (let i = 0; i < presidents.length; i++) {
+      names += `${presidents[i]}\n`;
+    }
+
     const timeTaken = Date.now() - message.createdTimestamp;
-    const presidentsPath = await usaPresidentList();
-
-    await Promise.all(
-      presidentsPath.map(async (path, i) => {
-        const { name, birthday } = await usaPresident("https://en.wikipedia.org" + path);
-        presidents += `${i + 1}. ${name} (${birthday})\n`;
-      })
-    );
-
-    message.reply(`${presidents}\n${timeTaken}ms.`);
+    message.reply(`${names}\n✅ Estimated time: ${timeTaken}ms.`);
+    console.log("DONE");
   }
 });
 
 client.login(config.BOT_TOKEN);
+console.log("I'm ready!");
